@@ -1,0 +1,333 @@
+
+
+body	{
+	background-color: #0f0804;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper	{
+	background: url(../images/bg.jpg) top left repeat-x #150b05;
+}
+
+.container	{
+	margin: 0 auto;
+	width: 940px;
+}
+
+
+/* additional globals -------- */
+.clear-left		{ clear:left; }
+.clear-right	{ clear:right; }
+.clear-both		{ clear:both; }
+
+img.left	{ float:left; margin-right:10px; }
+img.right	{ float:right; margin-left:10px; }
+/* additional globals -------- */
+
+
+/* menu ---------------------- */
+#menu	{
+	background-color: #180901;
+	height: 30px;
+}
+                
+        #menu	ul#loginInfoHeader {
+                color: #D8C7B5;
+                float: left;
+        }
+                #menu	ul#loginInfoHeader li form input {
+                    background-color: #5D3B26;
+                    border: medium none;
+                    color: #C08D60;
+                }
+                #menu	ul#loginInfoHeader li a {
+                    color: #db8d40;
+                    font-size: 1.1em;
+                    font-weight: bold;
+                }
+
+	#menu	ul	{ 
+		float: right;
+		padding-top: 9px;
+	}
+	
+		#menu	li	{
+			display: block;
+			float: left;
+			font-size: 0.6875em;
+			padding-left: 10px;
+		}
+		
+		#menu	li	a:link,
+		#menu	li	a:visited	{
+			color: #925b25;
+			text-decoration: none;
+		}
+		
+		#menu	li	a:active,
+		#menu	li	a:hover		{ color:#db8d40; }
+/* menu ---------------------- */
+
+
+/* header -------------------- */
+#header	{
+	background: url(../images/bg-header.jpg) top left no-repeat;
+	height: 157px;
+	position: relative;
+	width: 940px;
+}
+
+		#header	h2	a	{
+			background-image: url(../images/mikes-logo.jpg);
+			display: block;
+			float: left;
+			height: 157px;
+			overflow: hidden;
+			position: absolute;
+			text-indent: -9999px;
+			width: 390px;
+		}
+
+/* header -------------------- */
+
+
+/* navigation ---------------- */
+#navigation	{
+	background-color: #2a201a;
+	border-bottom: 1px solid #33261f;
+	border-top: 1px solid #33261f;
+	height: 31px;
+}
+
+	#navigation	ul	{ 
+		float: right;
+		padding-top: 10px;
+	}
+	
+		#navigation	li	{
+			display: block;
+			float: left;
+			font-size: 0.75em;
+			padding-left: 18px;
+		}
+		
+		#navigation	li	a:link,
+		#navigation	li	a:visited	{
+			color: #c4a480;
+			text-decoration: none;
+		}
+		
+		#navigation	li	a:active,
+		#navigation	li	a:hover		{ color:#f5e1ca; }
+                
+		
+		#navigation	li	a#adminButton		{ color:#DB8D40; }
+		
+		
+		
+		
+		/*style the main menu*/ 
+		#navigation { 
+			margin:0; 
+			padding:0; 
+		} 
+		#navigation ul li { 
+			list-style:none; 
+			float:left;
+		} 
+		
+		#navigation ul li a:link, .myMenu ul li a:visited { 
+			display:block; 
+			margin:0; 
+			/*text-decoration:none; 
+			background-color:#09F; 
+			padding: 0.5em 2em; 
+			border-right: 1px solid #fff; 
+			color:#111; 
+			*/
+		}
+		*/
+		/*style the sub menu*/ 
+		#navigation-sub {
+			background-color: #2A201A;
+		}
+		#navigation-sub li {
+			background-color: #2A201A;
+			font-size: 1em;
+		}
+		#navigation ul li ul { 
+			background-color: #2A201A;
+			position: absolute; 
+			visibility: hidden; 
+			border: 1px solid #33261F;
+			margin: 2px; 
+			margin-top: 0px;
+			padding: 2px; 
+		} 
+		#navigation ul li ul li { 
+			display: inline; 
+			float: none; 
+		} 
+		#navigation ul li ul li a:link, .myMenu ul li ul li a:visited { 
+			width: auto; 
+		} 
+                
+/* navigation ---------------- */
+
+
+/* content -------------------- */
+#main	{ padding:30px 0; }
+
+	#content	{
+		float: left;
+		padding-right: 30px;
+		width: 660px;
+	}
+/* content -------------------- */
+
+
+/* sidebar -------------------- */
+#sidebar	{
+	background:url(../images/sidebar-bg-mid.jpg) top left repeat-y;
+	float: left;
+	width: 250px;
+}
+
+	.sidebar-wrapper	{ background:url(../images/sidebar-bg-top.jpg) top left no-repeat; }
+	
+		.sidebar-container	{
+			background: url(../images/sidebar-bg-bottom.jpg) bottom left no-repeat;
+			padding: 20px 16px 25px;
+		}
+/* sidebar -------------------- */
+
+
+/* footer --------------------- */
+#footer	{ 
+	background-color: #0f0804;
+	border-top: 1px solid #1e1007;
+	padding: 25px 0;
+}
+
+	#footer .container	{ position:relative; }
+
+		#footer	h3	a	{
+			background-image: url(../images/footer-logo.png);
+			display: block;
+			float: left;
+			height: 41px;
+			margin: 10px 150px 0 0;
+			overflow: hidden;
+			text-indent: -9999px;
+			width: 189px;
+		}
+		
+	.email-signup	{
+		background-color: #150b05;
+		border: 1px solid #1e1007;
+		float: left;
+		padding: 10px;
+	}
+	
+		.email-signup	h4	{
+			background-image: url(../images/icon-mail.png);
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			color: #c08d60;
+			font-family: Georgia, "Times New Roman", Times, serif;
+			font-size: 14px;
+			font-weight: normal;
+			margin-bottom: 5px;
+			padding-left: 22px;
+		}
+	
+		.email-signup	a	{
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			color: #c08d60;
+			font-family: Georgia, "Times New Roman", Times, serif;
+			font-size: 14px;
+			font-weight: normal;
+			margin-bottom: 5px;
+			text-decoration: none;
+		}
+		
+		.email-signup	input.field	{
+			background-color: #5d3b26;
+			border: 1px solid #93674d;
+			color: #000;
+			float: left;
+			margin-right: 5px;
+		}
+		
+		.email-signup	input.button	{
+			background-image: url(../images/btn-submit.png);
+			background-color: transparent;
+			border: 0;
+			cursor: pointer;
+			display: block;
+			float: left;
+			height: 22px;
+			line-height: 0;
+			text-indent: -9999px;
+			width: 63px;
+		}
+	.website-hits	{
+		clear: left; 
+		color: #C08D60;
+		float:left; 
+		/*padding-left: 340px;*/
+		padding-top: 5px;
+	}	
+	.footer-links	{
+		float: left;
+		padding-top: 10px;
+		position: absolute;
+		right: 0;
+		text-align: right;
+		top: 0;
+	}
+	
+		#footer	p	{
+			color: #40260d;
+			font-size: 0.6875em;
+		}
+		
+		#footer	ul	{ 
+			padding: 0 0 10px;
+		}
+		
+			#footer	li	{
+				color: #2e1e00;
+				display: inline;
+				font-size: 0.75em;
+			}
+			
+			#footer	li	a:link,
+			#footer	li	a:visited	{
+				color: #46290c;
+				text-decoration: none;
+			}
+			
+			#footer	li	a:active,
+			#footer	li	a:hover		{ color:#774715; }
+		
+	/*.border	{
+		border-bottom: 1px solid #200f04;
+		border-top: 1px solid #200f04;
+		height: 10px;
+	}*/
+/* footer --------------------- */
+
+
+/* webring --------------------- */
+.webring-wrapper	{
+	background-color: #0f0804;
+}
+.webring	{
+	margin: 0 auto;
+	width: 940px;
+	padding: 25px 0;
+	position:relative;
+}
+/* webring --------------------- */

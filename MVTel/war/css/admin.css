@@ -1,0 +1,97 @@
+/* image upload form ---------------- */
+#imageUploadForm   label,
+#fsaleUploadForm   label,
+#publishEmailForm  label {
+    clear: left;
+    color: #D8C7B5;
+    float: left;
+    width: 8em;
+}
+#imageUploadForm   input.button,
+#fsaleUploadForm   input.button,
+#publishEmailForm  input.button {
+    background-color: #5D3B26;
+    border: medium none;
+    color: #C08D60;
+    font-size: 1em;
+    margin-right: 5px;
+    width: 100px;
+}
+#imageUploadForm   input, 
+#imageUploadForm   select,
+#fsaleUploadForm   input, 
+#fsaleUploadForm   select, 
+#publishEmailForm  input,
+#publishEmailForm  select {
+    float: left;
+    font-size: 0.75em;
+    width: 20em;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+}
+#imageUploadForm   div#messagePanel,
+#fsaleUploadForm   div#messagePanel,
+#publishEmailForm  div#messagePanel {
+    color: #D8C7B5;
+    margin-bottom: 10px;
+}
+#imageUploadForm   div#messagePanel.error,
+#fsaleUploadForm   div#messagePanel.error,
+#publishEmailForm  div#messagePanel.error {
+    color: #A81705;
+}
+#imageUploadForm   div,     
+#imageUploadForm   p,
+#fsaleUploadForm   div,
+#fsaleUploadForm   p,
+#publishEmailForm  div,
+#publishEmailForm  p {
+    clear: left;
+    font-size: 0.75em;
+    margin-left: 8em;
+}
+#imageUploadForm   textArea#phoneDescription,
+#fsaleUploadForm   textArea#saleDescription,
+#publishEmailForm  textArea#emailMessage {
+    float: left;
+    font-family: inherit;
+    font-size: 0.75em;
+    height: 120px;
+    width: 510px;
+}
+/* image upload form ---------------- */
+
+
+#jumpLoaderApplet {
+    clear: left;
+    float: left;
+    font-size: 0.75em;
+    margin-bottom: 10px;
+    margin-left: 8em;
+}
+
+
+#content table.emailListTable {
+    border: 1px solid #33261F;
+    color: #D8C7B5;
+    font-size: 0.75em;
+    line-height: 2em;
+    width: 660px;
+}
+    #content table.emailListTable thead {
+        background-color: #2A201A;
+    }
+    #content table.emailListTable tbody tr td {
+        border-top: 1px solid #33261F;
+    }
+        #content table.emailListTable thead tr td.email {
+            width: 260px;
+        }   
+        #content table.emailListTable tbody tr td.name {
+            width: 160px;
+        }
+        #content table.emailListTable tbody tr td.controls {
+            width: 240px;
+        }

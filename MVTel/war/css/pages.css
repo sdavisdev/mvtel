@@ -1,0 +1,104 @@
+
+/* category page ------------- */
+#main	.product-list	{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+	#main	.product-list	li	{
+		float: left;
+		margin-right: 15px;
+		text-align: center;
+		width: 150px;
+		height: 187px;
+	}
+
+		.product-list-image	{
+			height: 150px;
+			padding-bottom: 10px;
+		}
+		
+				#main	.product-list	h3	a:link,
+				#main	.product-list	h3	a:visited	{ font-family:Arial, Helvetica, sans-serif; text-decoration:none;}
+				
+				#main	.product-list	h3	a:active,
+				#main	.product-list	h3	a:hover		{ text-decoration:underline; }
+/* category page ------------- */
+
+
+/* product page -------------- */
+.product-area	{ padding-top:10px; }
+
+	.product-image	{
+		border: 1px solid #302219;
+		float: left;
+		margin-right: 20px;
+		padding: 19px;
+		text-align: center;
+		width: 260px;
+	}
+	
+	.product-info	{
+		float: left;
+		width: 340px;
+	}
+	
+		#content	.additional-images	{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		
+			#content	.additional-images	li	{
+				display: inline;
+				padding-right: 10px;
+			}
+/* product page -------------- */
+
+
+
+/* for sale page -------------- */
+.forsale-area	{ padding-top:10px; }
+
+	.forsale-image	{
+		border: 1px solid #302219;
+		float: left;
+		margin-right: 20px;
+		padding: 19px;
+		text-align: center;
+		width: 154px;
+	}
+	
+	.forsale-info	{
+		float: left;
+		width: 420px;
+	}
+/* for sale page -------------- */
+
+/* about page -------------- */
+.about	{
+	 background-color:#0F0804;  
+	 float: left; 
+	 margin-bottom: 5px; 
+	 padding: 5px; 
+	 width: 310px;
+}
+.about-left	{
+	 margin-right: 20px; 
+}
+	.forsale-image	{
+		border: 1px solid #302219;
+		float: left;
+		margin-right: 20px;
+		padding: 19px;
+		text-align: center;
+		width: 154px;
+	}
+	
+	.forsale-info	{
+		float: left;
+		width: 420px;
+	}
+/* for sale page -------------- */
+	

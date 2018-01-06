@@ -1,0 +1,157 @@
+/* content -------------------- */
+#content	h1, 
+#content	h2, 
+#content	h3, 
+#content	h4, 
+#content	h5, 
+#content	h6	{
+	color: #d8c7b5;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	line-height: 1.25em;
+	margin-bottom: 12px;
+}
+
+#content	h1	{ border-bottom:1px solid #302219; font-size:1.875em; font-weight:normal; padding-bottom:5px; }
+#content	h2	{ font-size:1.25em; }
+#content	h3	{ font-size:1em; }
+#content	h4	{ font-size:0.875em; }
+#content	h5	{ font-size:0.75em; }
+#content	h6	{ font-size:0.625em; }
+
+#content	a:link,
+#content	a:visited	{ color:#c08d60; }
+
+#content	a:active,
+#content	a:hover		{ text-decoration:none; }
+
+#content	p	{
+	color: #d8c7b5;
+	font-size: 0.75em;
+	line-height: 1.4em;
+	margin-bottom: 10px;
+}
+
+    #content	form    label	{
+	color: #d8c7b5;
+	font-size: 0.75em;
+	line-height: 1.4em;
+	margin-bottom: 10px;
+}
+
+#content	form   textarea	{
+        height: 150px;
+        font-family: inherit;
+        font-size: inherit;
+        margin-bottom: 10px;
+        width: 100%
+}
+
+#content        form   input.button {
+        background-color: #5D3B26;
+        border: medium none;
+        color: #C08D60;
+        cursor : pointer;
+}
+        #content        form   input.button.disabled {
+                background-color: gray;
+                border: medium none;
+                color: black;
+                cursor: not-allowed;
+        }
+
+#content        form   p#modifyPhoneResult {
+        color:#C08D60;
+        margin-top: 5px;
+}
+
+    #content        form   p#modifyPhoneResult.error {
+            color: #A81705;
+    }
+
+#content	ul	{
+	color: #d8c7b5;
+	list-style: disc;
+	margin-left: 10px;
+	padding-left: 10px;
+}
+
+	#content	li	{
+		font-size: 0.75em;
+		line-height: 18px;
+		padding-bottom: 10px;
+	}
+	
+#content	.breadcrumbs	{
+	list-style: none;
+	margin: 0;
+	padding: 0 0 10px 0;
+}
+
+	#content	.breadcrumbs	li	{
+		color: #c08d60;
+		display: inline;
+		font-size: 11px;
+	}
+		
+		#content	.breadcrumbs	a	{}
+/* content -------------------- */
+
+/* homepage ------------------ */
+.banner-area	{
+	background-image: url(../images/main-banner2.jpg);
+	background-repeat: no-repeat;
+	height: 330px;
+	/*padding: 36px 30px 0 272px*/
+	padding: 15px 10px 0 272px
+}
+/*
+	.banner-area	img {
+		float: left;
+		height: 320px;
+		padding-right: 30px;
+	}
+*/
+	.banner-area	h4	{
+		color: #f4d4c1;
+		font-family: "Times New Roman", Times, serif;
+		font-size: 2.25em;
+		font-weight: normal;
+		padding-bottom: 10px;
+	}
+	
+	.banner-area	p	{
+		color: #f4d4c1;
+		font-size: 0.75em;
+		line-height: 18px;
+		padding-bottom: 10px;
+	}
+/* homepage ------------------ */
+
+
+/* sidebar ------------------- */
+#sidebar	h3	{
+	border-bottom: 1px solid #4a3f22;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 1.375em;
+	font-weight: normal;
+	text-shadow: 1px 1px 0 #826a4d;
+}
+
+#sidebar	.article-list	{ padding-top:5px; }
+
+	#sidebar	.article-list	li	{
+		font-size: 0.75em;
+		line-height: 18px;
+		margin-bottom: 5px;
+	}
+	
+		.article-list	li	a:link,
+		.article-list	li	a:visited	{ color:#150f07; text-decoration:none; }
+		
+		.article-list	li	a:active,
+		.article-list	li	a:hover		{ color:#000; }
+/* sidebar ------------------- */
+
+
+

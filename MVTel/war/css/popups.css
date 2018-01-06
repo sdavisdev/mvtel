@@ -1,0 +1,47 @@
+
+body {
+    /*background-color: #333333;*/
+    background: url("../images/sidebar-bg-mid.jpg") repeat scroll left top transparent;
+}
+
+#content {
+    /*width: 510px;*/
+}
+
+#content.receiveEmail {
+    width: 510px;
+}
+
+#content.registerEmail {
+    width: 440px;
+}
+
+#content h1 {
+    margin-left: 20px; 
+    margin-top: 10px;
+}
+
+form input,
+form textarea#emailMessage {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #FFFFFF;
+    float: left;
+    font-family: 'Trebuchet MS',Verdana,Arial;
+    margin: 2px;
+    padding: 2px;
+    width: 300px;
+}
+
+form textarea#emailMessage {
+	font-size: 80%;
+}
+form label {
+    clear: left;
+    display: block;
+    float: left;
+    font-weight: bold;
+    margin-top: 5px;
+    padding-right: 4px;
+    text-align: right;
+    width: 100px;
+}

@@ -1,0 +1,31 @@
+<div class="banner-area">
+    <h4>Welcome to my collection...</h4>
+
+    <p>
+    	Mike's Vintage Telephones is my 25 year collection of antique and vintage telephones. 
+    	Many types including early &amp; rare telephones spanning from the late 1800s through the 1970s are represented.  
+    	Included are many individual examples and subcollections &#40;such as colored 302s and &#35;23 series paystations&#41; by 
+    	companies such as Western Electric, Gray and many others.  As time goes on other aspects of the collection 
+    	will be added to the website.
+    </p>
+    <p>
+    	The main feature of the collection is the vast accumulation of &quot;coin collectors&quot; &amp; 
+    	paystations &#40;payphones&#41;.  The collection illustrates the progression of subtle change beginning 
+    	with the early coin collectors of the 1890s through the introduction of the 50A paystation around 
+    	1912 until the end of production of the 3 Slot around 1970. I believe this site contains the most 
+    	comprehensive collection of early payphones on the web. The collection and this web site are both 
+    	ongoing works and updated whenever possible. 
+		<!--
+		We've added a new segment to the paystation section containing later Western Electric payphones 
+		from the mid 1960s to about the 1990s.  Now that the single slot payphones are fading away from 
+		view on the streets and in the lobbies of Anmerica I feel there is a need to represent them here.
+		-->
+    </p>
+    <p>
+    	I am always interested in finding new items to add that will enhance my collection.
+    </p>
+    <p>
+    	Have one that doesn't work?  I repair &amp; rewire antique telephones &amp; payphones.  I also have original parts available.
+   	</p>
+   	
+</div>
