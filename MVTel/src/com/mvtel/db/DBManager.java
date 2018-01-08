@@ -662,6 +662,12 @@ public class DBManager implements IDBManager
 		System.out.println("DBManager::incrementHitCount() NOT SUPPORTED!");
 		return 0;
 	}
+	
+	public List<Phone> getAllPhones()
+	{
+		System.out.println("DBManager::getAllPhones() NOT SUPPORTED!");
+		return new ArrayList<Phone>();
+	}
     
     public static void main(String[] args) throws Exception
     {

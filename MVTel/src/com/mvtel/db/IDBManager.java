@@ -15,6 +15,7 @@ public interface IDBManager
 	Result deletePhone(long id);
 	List<Phone> getByCategory(String category) throws DatabaseException;
 	Phone getPhone(String category, String name) throws DatabaseException;
+	List<Phone> getAllPhones() throws DatabaseException;
 	Phone getPhone(long id) throws DatabaseException;
 	
 	Result saveSaleItem(SaleItem item);

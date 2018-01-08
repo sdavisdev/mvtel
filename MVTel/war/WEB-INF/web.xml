@@ -84,6 +84,22 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <url-pattern>/Admin/Upload/*</url-pattern>
     </servlet-mapping>
 
+	<!-- API -->
+	<servlet>
+		<description></description>
+		<display-name>APIServlet</display-name>
+		<servlet-name>APIServlet</servlet-name>
+		<servlet-class>com.mvtel.servlets.APIServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>APIServlet</servlet-name>
+		<url-pattern>/api</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>APIServlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+  
 	<!--  Restrict Admin areas to registered GAE Admins only -->
     <security-constraint>
         <web-resource-collection>

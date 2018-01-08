@@ -66,6 +66,25 @@ public class DBManagerGAE implements IDBManager
 	}
 
 	@Override
+	public List<Phone> getAllPhones() throws DatabaseException
+	{
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try {
+			Query query = pm.newQuery("select from " + Phone.class.getName() +
+					" order by name ASC");
+			
+			List<Phone> results = (List<Phone>)query.execute();
+			
+			if(results.size() == 0)
+				throw new DatabaseException("Could not look up all phones");
+			
+			return new ArrayList<Phone>(results);
+		}finally {
+			pm.close();
+		}
+	}
+
+	@Override
 	public Phone getPhone(String category, String name)
 			throws DatabaseException
 	{
