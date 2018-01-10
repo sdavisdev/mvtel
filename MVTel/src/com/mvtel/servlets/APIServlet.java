@@ -2,6 +2,7 @@ package com.mvtel.servlets;
 
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
@@ -32,10 +33,40 @@ public class APIServlet extends HttpServlet {
 	private static IDBManager dbManager = DBManagerFactory.getDBManager();
     
     private String contextPath;
+    private List<SaleItem> saleItems;
+    private List<WebsiteLink> links;
+    private List<Article> articles;
     
     @Override
     public void init() throws ServletException{
         contextPath = getServletContext().getContextPath() + "/api";
+    }
+    
+    private void loadDatabase()
+    {
+        synchronized(this)
+        {
+	        try {
+	            saleItems = dbManager.getSaleItems();
+	        } catch(Exception e) {
+	            logger.severe("ERROR: Could not lookup Sale Items from the DB on APIServlet init: " + e.getMessage());
+	            saleItems = new ArrayList<>();
+	        }
+	       
+	        try {
+	            links = dbManager.getLinks();
+	        } catch(Exception e) {
+	        	logger.severe("ERROR: Could not lookup Website Links from the DB on APIServlet init: " + e.getMessage());
+	            links = new ArrayList<>();
+	        }
+	       
+	        try {
+	            articles = dbManager.getArticles();
+	        } catch(Exception e) {
+	            logger.severe("ERROR: Could not lookup Articles from the DB on APIServlet init: " + e.getMessage());
+	            articles = new ArrayList<>();
+	        }
+        }
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,7 +117,6 @@ public class APIServlet extends HttpServlet {
             	logger.info("sale items");
             	try
             	{
-            		List<SaleItem> saleItems = dbManager.getSaleItems();
             		System.out.println("SALE ITEMS " + saleItems.size());
             		OutputUtils.toJSON(saleItems.toArray(new SaleItem[saleItems.size()])).writeJSONString(response.getWriter());
             	}
@@ -107,7 +137,7 @@ public class APIServlet extends HttpServlet {
             	{
             		Article article = dbManager.getArticle(Long.parseLong(id));
             		logger.info("Article " + article);
-            		OutputUtils.toJSON(article).writeJSONString(response.getWriter());
+            		OutputUtils.toJSON(article, true).writeJSONString(response.getWriter());
             	}
             	catch(Exception e)
             	{
@@ -118,11 +148,11 @@ public class APIServlet extends HttpServlet {
             else
             {
             	logger.info("articles");
+            	boolean full = Boolean.parseBoolean(request.getParameter("full"));
             	try
             	{
-            		List<Article> articles = dbManager.getArticles();
             		System.out.println("Articles " + articles.size());
-            		OutputUtils.toJSON(articles.toArray(new Article[articles.size()])).writeJSONString(response.getWriter());
+            		OutputUtils.toJSON(articles.toArray(new Article[articles.size()]), full).writeJSONString(response.getWriter());
             	}
             	catch(Exception e)
             	{
@@ -136,7 +166,6 @@ public class APIServlet extends HttpServlet {
         	logger.info("links");
         	try
         	{
-        		List<WebsiteLink> links = dbManager.getLinks();
         		System.out.println("Links " + links.size());
         		OutputUtils.toJSON(links.toArray(new WebsiteLink[links.size()])).writeJSONString(response.getWriter());
         	}
@@ -158,6 +187,7 @@ public class APIServlet extends HttpServlet {
         {
             String category = tk.hasMoreTokens() ? URLDecoder.decode(tk.nextToken(), "UTF-8") : null;
             String name = tk.hasMoreTokens() ? URLDecoder.decode(tk.nextToken(), "UTF-8") : null;
+        	boolean full = Boolean.parseBoolean(request.getParameter("full"));
 
             if(name != null)
             {
@@ -166,7 +196,7 @@ public class APIServlet extends HttpServlet {
             	{
             		Phone phone = dbManager.getPhone(category, name);
             		logger.info("Phone" + phone);
-            		OutputUtils.toJSON(phone).writeJSONString(response.getWriter());
+            		OutputUtils.toJSON(phone, true).writeJSONString(response.getWriter());
             	}
             	catch(Exception e)
             	{
@@ -181,7 +211,7 @@ public class APIServlet extends HttpServlet {
             	{
                 	List<Phone> phones = dbManager.getByCategory(category);
             		System.out.println("Phones" + phones.size());
-            		OutputUtils.toJSON(phones.toArray(new Phone[phones.size()])).writeJSONString(response.getWriter());
+            		OutputUtils.toJSON(phones.toArray(new Phone[phones.size()]), full).writeJSONString(response.getWriter());
             	}
             	catch(Exception e)
             	{
@@ -196,7 +226,7 @@ public class APIServlet extends HttpServlet {
             	{
                 	List<Phone> phones = dbManager.getAllPhones();
             		System.out.println("All Phones" + phones.size());
-            		OutputUtils.toJSON(phones.toArray(new Phone[phones.size()])).writeJSONString(response.getWriter());
+            		OutputUtils.toJSON(phones.toArray(new Phone[phones.size()]), full).writeJSONString(response.getWriter());
             	}
             	catch(Exception e)
             	{
@@ -204,6 +234,15 @@ public class APIServlet extends HttpServlet {
             		response.getWriter().println("[]");
             	}
             }
+        }
+        else if("invalidate".equals(type))
+        {
+    		boolean authenticated = request.getSession().getAttribute("authenticated") != null 
+					&&(Boolean)request.getSession().getAttribute("authenticated");
+    		if(authenticated)
+    		{
+    			loadDatabase();
+    		}
         }
 	}
 

@@ -33,35 +33,39 @@ public class OutputUtils
         return object;
     }
 
-    public static JSONArray toJSON(Phone[] phones)
+    public static JSONArray toJSON(Phone[] phones, boolean full)
     {
     	JSONArray array = new JSONArray();
     	for(Phone phone : phones)
     	{
-    		array.add(toJSON(phone));
+    		array.add(toJSON(phone, full));
     	}
     	return array;
     }
     
-    public static JSONObject toJSON(Phone phone)
+    public static JSONObject toJSON(Phone phone, boolean full)
     {
     	JSONObject object = new JSONObject();
     	object.put("id", Long.toString(phone.getId()));
     	object.put("name", phone.getName());
-    	object.put("desc", phone.getDescription());
     	object.put("cat", phone.getCategory());
-    	JSONArray imageUrls = new JSONArray();
-    	for(String url: phone.getImageUrls())
+    	object.put("img", phone.getFirstImageUrl());
+    	if(full)
     	{
-    		imageUrls.add(url);
+    		object.put("desc", phone.getDescription());
+        	JSONArray imageUrls = new JSONArray();
+        	for(String url: phone.getImageUrls())
+        	{
+        		imageUrls.add(url);
+        	}
+        	object.put("imgUrls", imageUrls);
+        	JSONArray images = new JSONArray();
+        	for(String image: phone.getImages())
+        	{
+        		images.add(image);
+        	}
+        	object.put("imgs", images);
     	}
-    	object.put("imgUrls", imageUrls);
-    	JSONArray images = new JSONArray();
-    	for(String image: phone.getImages())
-    	{
-    		images.add(image);
-    	}
-    	object.put("imgs", images);
     	return object;
     }
 
@@ -115,24 +119,27 @@ public class OutputUtils
     	return object;
     }
 
-    public static JSONArray toJSON(Article[] articles)
+    public static JSONArray toJSON(Article[] articles, boolean full)
     {
     	JSONArray array = new JSONArray();
     	for(Article article : articles)
     	{
-    		array.add(toJSON(article));
+    		array.add(toJSON(article, full));
     	}
     	return array;
     }
 
-    public static JSONObject toJSON(Article article)
+    public static JSONObject toJSON(Article article, boolean full)
     {
     	JSONObject object = new JSONObject();
     	object.put("id", Long.toString(article.getId()));
     	object.put("name", article.getName());
-    	object.put("content", article.getContent());
     	object.put("date", article.getPublishDate());
     	object.put("sort", Integer.toString(article.getSortOrder()));
+    	if(full)
+    	{
+        	object.put("content", article.getContent());
+    	}
     	return object;
     }
 
@@ -183,13 +190,13 @@ public class OutputUtils
     	phone.getImageUrls().add("http://img.1");
     	phone.getImageUrls().add("http://img.2");
     	phone.getImageUrls().add("http://img.3");
-    	System.out.println(toJSON(phone).toJSONString());
+    	System.out.println(toJSON(phone, true).toJSONString());
     	
     	EmailAddress email = new EmailAddress("test@example.com", "Test User");
     	System.out.println(toJSON(email).toJSONString());
     	
     	Article article = new Article(123L, "Article Name", "Jan 2018", new Text("Article Contents"), 5);
-    	System.out.println(toJSON(article).toJSONString());
+    	System.out.println(toJSON(article, true).toJSONString());
     	
     	WebsiteLink link = new WebsiteLink(456L, "Mikes Vintage Telephones", "My Site...", "mvtelonline.com", 2);
     	System.out.println(toJSON(link).toJSONString());
