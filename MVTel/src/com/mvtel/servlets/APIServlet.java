@@ -3,7 +3,9 @@ package com.mvtel.servlets;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
@@ -33,24 +35,30 @@ public class APIServlet extends HttpServlet {
 	private static IDBManager dbManager = DBManagerFactory.getDBManager();
     
     private String contextPath;
-    private List<SaleItem> saleItems;
+    private Map<Long, SaleItem> saleItems;
     private List<WebsiteLink> links;
-    private List<Article> articles;
+    private Map<Long, Article> articles;
+    private Map<String, Map<String, Phone>> phones;
     
     @Override
     public void init() throws ServletException{
         contextPath = getServletContext().getContextPath() + "/api";
+        loadDatabase();
     }
     
     private void loadDatabase()
     {
         synchronized(this)
         {
+        	saleItems = new HashMap<>();
 	        try {
-	            saleItems = dbManager.getSaleItems();
+	        	for(SaleItem item : dbManager.getSaleItems())
+	        	{
+	        		saleItems.put(item.getId(), item);
+	        	}
 	        } catch(Exception e) {
 	            logger.severe("ERROR: Could not lookup Sale Items from the DB on APIServlet init: " + e.getMessage());
-	            saleItems = new ArrayList<>();
+	            saleItems = new HashMap<>();
 	        }
 	       
 	        try {
@@ -59,12 +67,31 @@ public class APIServlet extends HttpServlet {
 	        	logger.severe("ERROR: Could not lookup Website Links from the DB on APIServlet init: " + e.getMessage());
 	            links = new ArrayList<>();
 	        }
-	       
+
+            articles = new HashMap<>();
 	        try {
-	            articles = dbManager.getArticles();
+	        	for(Article article : dbManager.getArticles())
+	        	{
+	        		articles.put(article.getId(), article);
+	        	}
 	        } catch(Exception e) {
 	            logger.severe("ERROR: Could not lookup Articles from the DB on APIServlet init: " + e.getMessage());
-	            articles = new ArrayList<>();
+	        }
+	        
+	        phones = new HashMap<>();
+	        try {
+	        	for(Phone phone : dbManager.getAllPhones())
+	        	{
+	        		Map<String, Phone> category = phones.get(phone.getCategory());
+	        		if(category == null)
+	        		{
+	        			category = new HashMap<>();
+	        			phones.put(phone.getCategory(), category);
+	        		}
+	        		category.put(phone.getName(), phone);
+	        	}
+	        } catch(Exception e) {
+	            logger.severe("ERROR: Could not lookup Articles from the DB on APIServlet init: " + e.getMessage());
 	        }
         }
     }
@@ -102,7 +129,13 @@ public class APIServlet extends HttpServlet {
             	logger.info("Sale item: " + id);
             	try
             	{
-            		SaleItem saleItem = dbManager.getSaleItem(Long.parseLong(id));
+            		Long itemId = Long.parseLong(id);
+            		SaleItem saleItem = saleItems.get(itemId);
+            		if(saleItem == null)
+            		{
+            			saleItem = dbManager.getSaleItem(itemId);
+            			saleItems.put(itemId, saleItem);
+            		}
             		logger.info("SALE ITEM " + saleItem);
             		OutputUtils.toJSON(saleItem).writeJSONString(response.getWriter());
             	}
@@ -118,7 +151,7 @@ public class APIServlet extends HttpServlet {
             	try
             	{
             		System.out.println("SALE ITEMS " + saleItems.size());
-            		OutputUtils.toJSON(saleItems.toArray(new SaleItem[saleItems.size()])).writeJSONString(response.getWriter());
+            		OutputUtils.toJSON(saleItems.values().toArray(new SaleItem[saleItems.size()])).writeJSONString(response.getWriter());
             	}
             	catch(Exception e)
             	{
@@ -135,7 +168,13 @@ public class APIServlet extends HttpServlet {
             	logger.info("article: " + id);
             	try
             	{
-            		Article article = dbManager.getArticle(Long.parseLong(id));
+            		Long articleId = Long.parseLong(id);
+            		Article article = articles.get(articleId);
+            		if(article == null)
+            		{
+            			article = dbManager.getArticle(articleId);
+            			articles.put(articleId, article);
+            		}
             		logger.info("Article " + article);
             		OutputUtils.toJSON(article, true).writeJSONString(response.getWriter());
             	}
@@ -152,7 +191,7 @@ public class APIServlet extends HttpServlet {
             	try
             	{
             		System.out.println("Articles " + articles.size());
-            		OutputUtils.toJSON(articles.toArray(new Article[articles.size()]), full).writeJSONString(response.getWriter());
+            		OutputUtils.toJSON(articles.values().toArray(new Article[articles.size()]), full).writeJSONString(response.getWriter());
             	}
             	catch(Exception e)
             	{
@@ -192,47 +231,40 @@ public class APIServlet extends HttpServlet {
             if(name != null)
             {
             	logger.info("phone " + name);
-            	try
+            	Map<String, Phone> categoryMap = phones.get(category);
+        		Phone phone;
+            	if(categoryMap != null && (phone = categoryMap.get(name)) != null)
             	{
-            		Phone phone = dbManager.getPhone(category, name);
             		logger.info("Phone" + phone);
             		OutputUtils.toJSON(phone, true).writeJSONString(response.getWriter());
             	}
-            	catch(Exception e)
+            	else
             	{
-            		logger.warning(e.getMessage());
+            		logger.warning("Could not look up phone '" + name + "' under " + category);
             		response.getWriter().println("{}");
             	}
             }
             else if(category != null)
             {
             	logger.info("phones under " + category);
-            	try
+            	Map<String, Phone> categoryMap = phones.get(category);
+            	if(categoryMap == null)
             	{
-                	List<Phone> phones = dbManager.getByCategory(category);
-            		System.out.println("Phones" + phones.size());
-            		OutputUtils.toJSON(phones.toArray(new Phone[phones.size()]), full).writeJSONString(response.getWriter());
+            		categoryMap = new HashMap<>();
             	}
-            	catch(Exception e)
-            	{
-            		logger.warning(e.getMessage());
-            		response.getWriter().println("[]");
-            	}
+        		System.out.println("Phones" + categoryMap.size());
+        		OutputUtils.toJSON(categoryMap.values().toArray(new Phone[categoryMap.size()]), full).writeJSONString(response.getWriter());
             }
             else
             {
             	logger.info("all phones");
-            	try
+            	List<Phone> phones = new ArrayList<>();
+            	for(Map<String, Phone> categories : this.phones.values())
             	{
-                	List<Phone> phones = dbManager.getAllPhones();
-            		System.out.println("All Phones" + phones.size());
-            		OutputUtils.toJSON(phones.toArray(new Phone[phones.size()]), full).writeJSONString(response.getWriter());
+            		phones.addAll(categories.values());
             	}
-            	catch(Exception e)
-            	{
-            		logger.warning(e.getMessage());
-            		response.getWriter().println("[]");
-            	}
+        		System.out.println("All Phones" + phones.size());
+        		OutputUtils.toJSON(phones.toArray(new Phone[phones.size()]), full).writeJSONString(response.getWriter());
             }
         }
         else if("invalidate".equals(type))
@@ -245,5 +277,4 @@ public class APIServlet extends HttpServlet {
     		}
         }
 	}
-
 }
